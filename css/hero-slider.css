@@ -36,6 +36,13 @@ Hero Slider - by CodyHouse.co
   }
 }
 
+.lang-content {
+  display: none;
+}
+.lang-content.active {
+  display: block;
+}
+
 .cd-header__nav {
   /* mobile first - navigation hidden by default, triggered by tap/click on navigation icon */
   float: right;
@@ -105,6 +112,34 @@ Hero Slider - by CodyHouse.co
     padding: .6em 1em;
     border-top: none;
   }
+}
+
+/* Make the switcher links positionable */
+.nav-link.lang-switcher {
+  position: relative;
+  padding-bottom: 0.25rem;  /* space for the underline */
+}
+
+/* Underline on hover */
+.nav-link.lang-switcher:hover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0.7px;            /* thickness of line */
+  background-color: #0f1a2b;
+}
+
+/* Underline persists on the selected (active) language */
+.nav-link.lang-switcher.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0.7px;
+  background-color: #0f1a2b;
 }
 
 /* Slider */
