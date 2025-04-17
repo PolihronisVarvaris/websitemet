@@ -344,90 +344,32 @@
     </div>
 
     <div id="contact" class="section lb">
-        <div class="container">
-            <div class="section-title text-center">
-                <h3>
-					<span data-lang="en" class="active">Get in Touch</span>
-					<span data-lang="gr">Επικοινωνία</span>
-				</h3>
-				<div class="info-box" data-toggle="tooltip" data-placement="bottom" title="We are happy to assist you further. If you have any questions, please don't hesitate to contact us">
-					<i class="fa fa-question-circle" aria-hidden="true"></i>
-				</div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="contact_form">
-                        <div id="message"></div>
-                        <form id="contactform" class="row" action="contact.php" name="contactform" method="post">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-									<input
-									  type="text"
-									  name="first_name"
-									  id="first_name"
-									  class="form-control"
-									  data-placeholder-en="First Name"
-									  data-placeholder-gr="Όνομα"
-									  placeholder="First Name"
-									>
-								  </div>
-								  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-									<input
-									  type="text"
-									  name="last_name"
-									  id="last_name"
-									  class="form-control"
-									  data-placeholder-en="Last Name"
-									  data-placeholder-gr="Επίθετο"
-									  placeholder="Last Name"
-									>
-								  </div>
-								  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-									<input
-									  type="email"
-									  name="email"
-									  id="email"
-									  class="form-control"
-									  data-placeholder-en="Your Email"
-									  data-placeholder-gr="Το Email σας"
-									  placeholder="Your Email"
-									>
-								  </div>
-								  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-									<input
-									  type="text"
-									  name="phone"
-									  id="phone"
-									  class="form-control"
-									  data-placeholder-en="Your Phone"
-									  data-placeholder-gr="Το Τηλέφωνό σας"
-									  placeholder="Your Phone"
-									>
-								  </div>
-								  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-									<textarea
-									  class="form-control"
-									  name="comments"
-									  id="comments"
-									  rows="6"
-									  data-placeholder-en="Additional Information"
-									  data-placeholder-gr="Επιπλέον Πληροφορίες"
-									  placeholder="Additional Information"
-									></textarea>
-								  </div>
-								  
-                                <div class="text-center pdi">
-                                    <button type="submit" value="SEND" id="submit" class="hvr-bounce-to-right get-btn">
-										<span data-lang="en" class="active">Send</span>
-										<span data-lang="gr">Αποστολή</span></button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <form name="contact" method="POST" data-netlify="true">
+			<input type="hidden" name="form-name" value="contact" />
+			
+			<div class="form-group">
+			  <label for="name"><span data-lang="en">Name</span><span data-lang="gr">Όνομα</span></label>
+			  <input type="text" name="name" id="name" required class="form-control" />
+			</div>
+		  
+			<div class="form-group">
+			  <label for="email"><span data-lang="en">Email</span><span data-lang="gr">Ηλ. Ταχυδρομείο</span></label>
+			  <input type="email" name="email" id="email" required class="form-control" />
+			</div>
+		  
+			<div class="form-group">
+			  <label for="message"><span data-lang="en">Message</span><span data-lang="gr">Μήνυμα</span></label>
+			  <textarea name="message" id="message" rows="5" required class="form-control"></textarea>
+			</div>
+		  
+			<div class="text-center">
+			  <button type="submit" class="btn btn-primary">
+				<span data-lang="en">Send</span>
+				<span data-lang="gr">Αποστολή</span>
+			  </button>
+			</div>
+		  </form>
+		  
     </div>
 
     <div class="copyrights">
