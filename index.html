@@ -460,11 +460,16 @@
 									  <span data-lang="en" class="active">Send</span>
 									  <span data-lang="gr">Αποστολή</span>
 									</button>
-									<span id="thankYouMessage" style="display:none; margin-left: 10px; color: darkblue;" data-en="Thank you!" data-gr="Ευχαριστούμε!">
-									  Thank you!
-									</span>
-								  </div>
-                            </div>
+								</div>
+								<div id="thankYouPopup" class="thank-you-popup">
+									<div class="popup-content">
+									  <span class="close-popup" onclick="closeThankYouPopup()">&times;</span>
+									  <p data-en="Thank you! Your message has been sent." data-gr="Ευχαριστούμε! Το μήνυμά σας στάλθηκε.">
+										Thank you! Your message has been sent.
+									  </p>
+									</div>
+								</div>
+							</div>
                         </form>
                     </div>
                 </div>
@@ -513,12 +518,15 @@
 	</script>
 	
 	<script>
+		function closeThankYouPopup() {
+		  document.getElementById("thankYouPopup").style.display = "none";
+		}
+	  
 		document.getElementById("contactform").addEventListener("submit", function(e) {
 		  e.preventDefault();
 	  
 		  const form = this;
 		  const data = new FormData(form);
-		  const thankYouMessage = document.getElementById("thankYouMessage");
 	  
 		  fetch(form.action, {
 			method: form.method,
@@ -528,8 +536,8 @@
 			}
 		  }).then(response => {
 			if (response.ok) {
-			  form.reset(); // Clear inputs
-			  thankYouMessage.style.display = "inline"; // Show thank you
+			  form.reset(); // Clear form
+			  document.getElementById("thankYouPopup").style.display = "flex"; // Show popup
 			} else {
 			  alert("There was a problem submitting the form.");
 			}
@@ -540,7 +548,43 @@
 		});
 	  </script>
 	  
+	  
+	<script>
+	function closeThankYouPopup() {
+		document.getElementById("thankYouPopup").style.display = "none";
+	}
 	
+	document.getElementById("contactform").addEventListener("submit", function(e) {
+		e.preventDefault();
+	
+		const form = this;
+		const data = new FormData(form);
+	
+		fetch(form.action, {
+		method: form.method,
+		body: data,
+		headers: {
+			'Accept': 'application/json'
+		}
+		}).then(response => {
+		if (response.ok) {
+			form.reset(); // Clear form
+			ddocument.getElementById("thankYouPopup").classList.add("show"); // Show popup
+		} else {
+			alert("There was a problem submitting the form.");
+		}
+		}).catch(error => {
+		console.error("Form error:", error);
+		alert("There was a problem submitting the form.");
+		});
+	});
+
+	function closeThankYouPopup() {
+  		document.getElementById("thankYouPopup").classList.remove("show");
+	}
+	</script>
+
+
 	<script>
 		
 		var swiper = new Swiper('.swiper-container', {
