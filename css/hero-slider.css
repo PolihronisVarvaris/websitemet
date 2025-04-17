@@ -686,3 +686,10 @@ Hero Slider - by CodyHouse.co
 .no-js .cd-hero__nav {
   display: none;
 }
+
+.form-control:focus, 
+textarea:focus, 
+input:focus {
+  border-color: #ffffff; /* Dark blue */
+  outline: none;
+}
