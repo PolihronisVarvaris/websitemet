@@ -455,11 +455,15 @@
 									></textarea>
 								  </div>
 								  
-                                <div class="text-center pdi">
-                                    <button type="submit" value="SEND" id="submit" class="hvr-bounce-to-right get-btn">
-										<span data-lang="en" class="active">Send</span>
-										<span data-lang="gr">Αποστολή</span></button>
-                                </div>
+								<div class="text-center pdi">
+									<button type="submit" value="SEND" id="submit" class="hvr-bounce-to-right get-btn">
+									  <span data-lang="en" class="active">Send</span>
+									  <span data-lang="gr">Αποστολή</span>
+									</button>
+									<span id="thankYouMessage" style="display:none; margin-left: 10px; color: darkblue;" data-en="Thank you!" data-gr="Ευχαριστούμε!">
+									  Thank you!
+									</span>
+								  </div>
                             </div>
                         </form>
                     </div>
@@ -486,36 +490,56 @@
     <script src="js/custom.js"></script>
 	<script src="js/swiper.min.js"></script>
 	<script>
-  document.querySelectorAll('.lang-switcher').forEach(btn => {
-    btn.addEventListener('click', e => {
-      e.preventDefault();
-      const lang = btn.getAttribute('data-target-lang');
-
-      // 1) Toggle your translatable spans
-      document.querySelectorAll('[data-lang]').forEach(el => {
-        el.classList.toggle('active', el.getAttribute('data-lang') === lang);
-      });
-
-      // 2) Update placeholders inside the same handler
-      document.querySelectorAll('input[data-placeholder-en], textarea[data-placeholder-en]')
-        .forEach(el => {
-          el.placeholder = (lang === 'en'
-            ? el.dataset.placeholderEn
-            : el.dataset.placeholderGr);
-        });
-
-      // 3) (Optional) Highlight the active button
-      document.querySelectorAll('.lang-switcher').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-    });
-  });
-
-  // 4) Trigger the default language once on page load
-  document.querySelector('.lang-switcher[data-target-lang="en"]').click();
+		document.querySelectorAll('.lang-switcher').forEach(btn => {
+			btn.addEventListener('click', e => {
+			e.preventDefault();
+			const lang = btn.getAttribute('data-target-lang');
+			document.querySelectorAll('[data-lang]').forEach(el => {
+				el.classList.toggle('active', el.getAttribute('data-lang') === lang);
+			});
+			document.querySelectorAll('input[data-placeholder-en], textarea[data-placeholder-en]')
+				.forEach(el => {
+				el.placeholder = (lang === 'en'
+					? el.dataset.placeholderEn
+					: el.dataset.placeholderGr);
+				});
+			document.querySelectorAll('.lang-switcher').forEach(b => b.classList.remove('active'));
+			btn.classList.add('active');
+			});
+		});
+		document.querySelector('.lang-switcher[data-target-lang="en"]').click();
 
 
 	</script>
 	
+	<script>
+		document.getElementById("contactform").addEventListener("submit", function(e) {
+		  e.preventDefault();
+	  
+		  const form = this;
+		  const data = new FormData(form);
+		  const thankYouMessage = document.getElementById("thankYouMessage");
+	  
+		  fetch(form.action, {
+			method: form.method,
+			body: data,
+			headers: {
+			  'Accept': 'application/json'
+			}
+		  }).then(response => {
+			if (response.ok) {
+			  form.reset(); // Clear inputs
+			  thankYouMessage.style.display = "inline"; // Show thank you
+			} else {
+			  alert("There was a problem submitting the form.");
+			}
+		  }).catch(error => {
+			console.error("Form error:", error);
+			alert("There was a problem submitting the form.");
+		  });
+		});
+	  </script>
+	  
 	
 	<script>
 		
