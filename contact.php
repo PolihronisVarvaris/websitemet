@@ -21,6 +21,10 @@ function isEmail($email) {
     );
 }
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 // Ensure PHP_EOL is defined
 if (!defined("PHP_EOL")) define("PHP_EOL", "\r\n");
 
